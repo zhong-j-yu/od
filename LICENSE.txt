@@ -1,0 +1,5 @@
+License
+
+Public Domain
+
+    OD is released to public domain, including all source, binary, and documents.
