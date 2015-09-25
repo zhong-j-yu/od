@@ -1,38 +1,30 @@
 # OD
 
-**`OD`** is a small library for the Service Locator pattern.
+**`OD`** is a simple Service Locator library.
 
-`OD` supports Java 1.6 and up.
 
-public domain
+### Basic Usage
 
-Download jar
-
-Javadoc
-
-google group
-
-document
-
-## Basic
-
-To lookup an object of a certain type, call `OD.get(type)`
+To lookup an object of a certain type, use `OD.get(type)`
 
     Foo foo = OD.get( Foo.class );
 
-Prior to the lookup, typically during the startup phase,
-the application needs to bind the type to a supplier.
-For example
+To bind the type to an object or a supplier, use `OD.bind(type)`
 
-    OD.bind( Foo.class ).to( ()->new FooImpl() );   //  or, `to(FooImpl::new)`
+    OD.bind( Foo.class ).to( fooInstance );   // bind to a singleton
 
-    OD.bind( Foo.class ).to( FooImpl.class );  // if lambda is not available
+    OD.bind( Foo.class ).to( FooImpl::new );  // bind a supplier
 
-The supplier will be invoked for every call of `OD.get(Foo.class)`.
+See full document at <http://zhong-j-yu.github.io/od/1.0.0/>
 
-To bind `Foo` to a singleton
+----
 
-    OD.bind( Foo.class ).to( new FooImpl() );
+Download: [od-1.0.0.jar](http://zhong-j-yu.github.io/od/1.0.0/od-1.0.0.jar)
+
+Java: 6+
+
+License: Public Domain
+
+Discussion: https://groups.google.com/forum/#!forum/od-service-locator
 
 
-See document
