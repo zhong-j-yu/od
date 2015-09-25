@@ -19,12 +19,12 @@ See full document at <http://zhong-j-yu.github.io/od/1.0.0/>
 
 ----
 
-Download: [od-1.0.0.jar](http://zhong-j-yu.github.io/od/1.0.0/od-1.0.0.jar)
+*download* : [od-1.0.0.jar](http://zhong-j-yu.github.io/od/1.0.0/od-1.0.0.jar)
 
-Java: 6+
+*java version* : 6+
 
-License: Public Domain
+*license* : Public Domain
 
-Discussion: https://groups.google.com/forum/#!forum/od-service-locator
+*discussion* : https://groups.google.com/forum/#!forum/od-service-locator
 
 
