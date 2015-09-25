@@ -1,11 +1,23 @@
 # OD
 
-**`OD`** is a small library for the Service Locator pattern.
+**`OD`** is a simple *Service Locator* library.
 
-`OD` supports Java 1.6 and up.
-Download jar
-Javadoc
-google group
+Why service locator?
+While *Dependency Injection* is great, it might be too heavy handed for some applications.
+
+
+
+`OD` works with Java 6+; it is released to Public Domain.
+
+[\[ od-1.0.0.jar \]](od-1.0.0.jar)
+&nbsp;&nbsp;&nbsp;&nbsp;
+[\[ javadoc \]](javadoc/)
+&nbsp;&nbsp;&nbsp;&nbsp;
+[\[ github repo \]](https://github.com/zhong-j-yu/od)
+&nbsp;&nbsp;&nbsp;&nbsp;
+[\[ google group \]](https://groups.google.com/forum/#!forum/od-service-locator)
+
+=TOC=
 
 ## Lookup and Binding
 
