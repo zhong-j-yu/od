@@ -11,6 +11,9 @@ package bayou.jtype;
  * <p>
  *     Note: a wildcard is *not* a type.
  * </p>
+ * <p>
+ *     See also article <a href="http://bayou.io/draft/Capturing_Wildcards.html">Capturing Wildcards</a>
+ * </p>
  */
 final public class Wildcard implements TypeArg
 {
@@ -97,6 +100,12 @@ final public class Wildcard implements TypeArg
      * </p>
      * <p>
      *     `lowerBound` must be non-null; it can be the {@link NullType#INSTANCE null type}.
+     * </p>
+     * <p>
+     *     ( Strictly according to JLS, syntactically, a wildcard is either upper bounded or lower bounded,
+     *     but not both. That is, semantically,
+     *     either the lower bound is null-type, or the upper bound is `Object`, or both.
+     *     We do not enforce or require that property in our library. )
      * </p>
      */
     public Wildcard(ReferenceType<?> upperBound, ReferenceType<?> lowerBound)

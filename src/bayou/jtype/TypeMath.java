@@ -76,7 +76,7 @@ public class TypeMath
 
     static Wildcard convertWildcard(WildcardType jlrWildcard)
     {
-        ReferenceType upper=null, lower=null;
+        ReferenceType upper=ClassType.OBJECT, lower=NullType.INSTANCE;
         // java reflect API:
         // there is always exactly one upper bound. it's Object if there is no explicit upper bound.
         // there is zero or one lower bound. if there is a lower bound, upper bound is Object.

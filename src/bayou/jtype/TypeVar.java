@@ -45,9 +45,9 @@ public abstract class TypeVar<T> extends ReferenceType<T>
     abstract public ReferenceType<?> getUpperBound();
 
     /**
-     * The lower bound of the type variable. Could be the .
+     * The lower bound of the type variable.
      * <p>
-     *     The lower bound is usually the {@link NullType#INSTANCE null type},
+     *     The lower bound is usually the {@link NullType null type},
      *     unless this type variable is created by
      *     {@link TypeMath#doCaptureConversion(ClassType) capture conversion}
      *     for a lower-bounded wildcard.

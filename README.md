@@ -1,7 +1,9 @@
 # OD
 
-**`OD`** is a simple *Service Locator* library.
+**`OD`** is a simple *Service Locator* library for Java.
 
+But why service locator?
+See [In Defense of Service Locator](http://bayou.io/draft/In_Defense_of_Service_Locator.html).
 
 ### Basic Usage
 

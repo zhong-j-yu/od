@@ -10,6 +10,9 @@ package bayou.jtype;
  *
  *     ArrayType&lt; int[] &gt; array_int = new ArrayType&lt;&gt;( PrimitiveType.of(int.class) );
  * </pre>
+ * <p>
+ *     Note that `T` represents the array type, not the component type (which can be primitive).
+ * </p>
  */
 
 // represents an array type E[]. T=E[]. E can be primitive. We can't express that T must be array. Users beware.

@@ -9,7 +9,7 @@ import java.util.List;
  * Class or interface type.
  * ( Ideally this should be named as <code>ClassOrInterfaceType</code>, but that would be too long. )
  * <p>
- *     A ClassType may represent a parameterized types with type arguments.
+ *     A ClassType may represent a parameterized types, e.g. <code>Map&lt;String,Integer&gt;</code>.
  * </p>
  * <p>
  *     A ClassType can be created by one of the static factory methods, for example

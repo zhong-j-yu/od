@@ -254,6 +254,12 @@ public class OD
      *     This method is equivalent to {@link #bind(ClassType)}
      *     by wrapping the `Class` as `ClassType`; see {@link ClassType#of(Class)}.
      * </p>
+     * <p>
+     *     Example usage:
+     * </p>
+     * <pre>
+     *     OD.bind(Foo.class).to(foo);
+     * </pre>
      */
     static public <T> BindingBuilder<T> bind(Class<T> clazz){ return bind(ClassType.of(clazz)); }
 
@@ -267,9 +273,10 @@ public class OD
      *     Example usage:
      * </p>
      * <pre>
-     *     OD.bind(Foo.class).to(foo);
+     *     OD.bind( ClassType.of(Foo.class) ).to(foo);
      * </pre>
      * @see #bind(Class)
+     * @see bayou.jtype.ClassType
      */
     static public <T> BindingBuilder<T> bind(ClassType<T> type){ return new BindingBuilder<T>(false, type); }
 
@@ -361,16 +368,21 @@ public class OD
          *         OD.Local.setBindings(b0); // restore local bindings
          *     }
          * </pre>
+         * <p>
+         *     It is ok to get the binding list from one thread and set it to another thread;
+         *     this is useful for migrating a task and its context between threads.
+         * </p>
          */
         static public List<Binding> getBindings() { return LocalBindings.getSnapshot(); }
 
         /**
          * Set the local binding list for the current thread.
          * <p>
-         *     The list is typically from a previous {@link #getBindings()} call.
+         *     The list is typically from a previous {@link #getBindings()} call;
+         *     but it can also be any list of bindings.
          * </p>
          * <p>
-         *     If `bindings` is null or empty, clear the local bindings of the current thread.
+         *     If `bindings` is null or empty, the local bindings of the current thread will be cleared.
          * </p>
          */
         static public void setBindings(List<Binding> bindings){ LocalBindings.setAll(bindings); }
@@ -516,11 +528,46 @@ public class OD
          * <pre>
          *     OD.bind(Foo.class).to(FooImpl.class);
          *
-         *     OD.get(Foo.class); // invokes and returns `new FooImpl()`
+         *     OD.get(Foo.class); // returns `new FooImpl()`
+         * </pre>
+         * <p>
+         *     <b>Type Argument</b>
+         * </p>
+         * <p>
+         *     If `implClass` is generic, it might want to know the exact type arguments upon instantiation.
+         *     This can be done by a constructor that accepts type arguments. For example
+         * </p>
+         * <pre>
+         *     public class FooImpl&lt;T&gt; implements Foo&lt;T&gt;
+         *     {
+         *         public FooImpl(Class&lt;T&gt; classT)
+         *         {
+         *             ...
+         * </pre>
+         * <p>
+         *     If we `bind(Foo.class).to(FooImpl.class)`,
+         *     the binding will match a lookup for `Foo&lt;Bar&gt;`,
+         *     and the constructor `FooImpl(Class)` will be invoked with `Bar` class.
+         * </p>
+         * <p>
+         *     More generally,
+         *     suppose `implClass` has n type parameters &lt;T1, ..., Tn&gt;,
+         *     the constructor can have any number of arguments; each argument type must be one of
+         *     {@link java.lang.Class Class&lt;X&gt;},
+         *     {@link bayou.jtype.ClassType ClassType&lt;X&gt;},
+         *     <!-- {@link bayou.jtype.ArrayType ArrayType&lt;X&gt;}, --><!-- omit it for now; a little confusing -->
+         *     or
+         *     {@link bayou.jtype.ReferenceType ReferenceType&lt;X&gt;},
+         *     where `X` must be one of T1...Tn. For example,
+         * </p>
+         * <pre>
+         *     public class BarImpl&lt;K, V&gt;  implements Bar&lt;Map&lt;K, List&lt;V&gt;&gt;&gt;
+         *     {
+         *         public BarImpl(ClassType&lt;V&gt; typeV, Class&lt;K&gt; clazzK)
+         *
          * </pre>
          * @return the Binding created
          */
-        // todo: doc more complex cases
         public Binding to(Class<? extends T> implClass)
         {
             return finish( ImplClassBinding.of(type, tagMatcher, implClass));

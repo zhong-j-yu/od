@@ -14,7 +14,7 @@ import java.util.List;
     We solve this problem by having a "type-arg" constructor which accepts v1..vm through its method parameters.
 
     a candidate type-arg constructor: B(A1..Ak)
-        Ai=Ci<Ui>, Ci one of is ReferenceType, ArrayType, ClassType or Class,
+        Ai=Ci<Ui>, Ci one of is ReferenceType, ArrayType, ClassType, Class,
         Ui is one of V1..Vm.
     the type-arg constructor:
         the candidate with the most number of parameters. (error if multiple such candidates)
